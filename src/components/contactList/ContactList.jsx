@@ -8,7 +8,6 @@ import { useMemo } from "react";
 export default function ContactList() {
 
 	const contacts = useSelector((state) => state.contacts.items);
-	console.log(contacts);
 	const filter = useSelector(state => state.filters.name);
 	const dispatch = useDispatch();
 

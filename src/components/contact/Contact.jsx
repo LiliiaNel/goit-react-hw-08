@@ -3,7 +3,6 @@ import { IoMdPerson } from "react-icons/io";
 import { MdLocalPhone } from "react-icons/md";
 
 export default function Contact({ contact, deleteItem }) {
-    console.log(contact);
     return <>
         <div className={css.info}>
             <p><IoMdPerson /> {contact.name}</p>
