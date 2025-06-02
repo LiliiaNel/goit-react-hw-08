@@ -1,19 +1,17 @@
 import css from "./Contactlist.module.css";
 import Contact from "../contact/Contact";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice";
 import { useDebounce } from "use-debounce";
 import { useMemo } from "react";
+import { selectContacts } from "../../redux/contactsSlice";
+import { selectNameFilter } from '../../redux/filtersSlice'
 
 export default function ContactList() {
 
-	const contacts = useSelector((state) => state.contacts.items);
-	const filter = useSelector(state => state.filters.name);
+	const contacts = useSelector(selectContacts);
+	const filter = useSelector(selectNameFilter);
 	const dispatch = useDispatch();
-
-	const handleDeleteContact = (id) => {
-		dispatch(deleteContact(id));
-}
+	
 	const [debouncedFilter] = useDebounce(filter, 500);
 	
 	const visibleContacts = useMemo(() => {
@@ -24,7 +22,7 @@ export default function ContactList() {
 
 	return (<ul className={css.container}>
 		{visibleContacts.map((contact) => (<li key={contact.id} className={css.item}>
-			<Contact contact={contact} deleteItem={() => handleDeleteContact(contact.id)} />
+			<Contact contact={contact} />
 			</li>))}
 	</ul>)
 };
