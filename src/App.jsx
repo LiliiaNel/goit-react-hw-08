@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from './redux/contactsOps';
 import { selectLoading, selectError } from './redux/contactsSlice';
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,10 +16,10 @@ function App() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts()
+    dispatch(fetchContacts())
       .unwrap()
-      .then()
-      .catch());
+      .then(() => toast.success("Contacts loaded"))
+      .catch(() => toast.error("Failed to load contacts"));
   }, [dispatch]);
 
   return (
@@ -30,6 +31,7 @@ function App() {
           <SearchBox />
           {loading && <Loader />}
           {error && <ErrorMessage />}
+          <Toaster position="top-right" reverseOrder={false} />
         <ContactList />
         </div>
         </div>
