@@ -17,11 +17,11 @@
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
-  color: #333;
+  color: #072b4a;
 }
 
 .form .error {
-  color: red;
+  color: #e53935;
   font-size: 12px;
   margin-top: -10px;
   margin-bottom: 15px;

@@ -16,25 +16,38 @@ function App() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts())
-      .unwrap()
-      .then(() => toast.success("Contacts loaded"))
-      .catch(() => toast.error("Failed to load contacts"));
+    let ignore = false;
+  
+    async function loadContacts() {
+      try {
+        await dispatch(fetchContacts()).unwrap();
+        if (!ignore) toast.success("Contacts loaded");
+      } catch {
+        if (!ignore) toast.error("Failed to load contacts");
+      }
+    }
+    loadContacts();
+    return () => {
+      ignore = true;
+    };
   }, [dispatch]);
 
+
   return (
-    <div className={css.wrapper}>
-      <h1>Contacts List</h1>
-      <div className={css.content}>
-        <ContactForm />
-      <div>
+    <div>
+      <h1 className={css.title}>Contact Book</h1>
+      <div className={css.wrapper}>
+        <div className={css.content}>
+          <ContactForm />
           <SearchBox />
+        </div>
+        <div className={css.contactContent}>
           {loading && <Loader />}
           {error && <ErrorMessage />}
-          <Toaster position="top-right" reverseOrder={false} />
-        <ContactList />
+          {!loading && !error && <ContactList />}
         </div>
-        </div>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
     </div>
   );
 }

@@ -2,12 +2,11 @@ p {
   margin: 0;
 }
 
-
 .info {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  color: #333;
+  color: #072b4a;
   font-size: 14px;
 }
 
