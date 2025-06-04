@@ -12,7 +12,6 @@ export default function SearchBox() {
 
     const [value, setValue] = useState(filterValue);
     const [debouncedValue] = useDebounce(value, 500);
-    console.log(debouncedValue);
 
     useEffect(() => { dispatch(changeFilter(debouncedValue)) }, [debouncedValue, dispatch]);
     
