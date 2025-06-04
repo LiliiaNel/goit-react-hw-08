@@ -13,12 +13,26 @@ export const fetchContacts = createAsyncThunk("contacts/fetchAll", async (_, thu
     
  });
 
-export const deleteContact = createAsyncThunk("contact/deleteContact", async (contactId) => { 
-    const res = await axios.delete(`/contacts/${contactId}`);
-    return res.data;
-});
+ export const deleteContact = createAsyncThunk(
+    "contacts/delete",
+    async (contactId, thunkAPI) => {
+      try {
+        const response = await axios.delete(`/contacts/${contactId}`);
+        return response.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message || "Something went wrong");
+      }
+    }
+  );
 
-export const addContact = createAsyncThunk("contact/addContact", async (newContact) => { 
-    const res = await axios.post('/contacts', newContact);
-    return res.data;
-});
+export const addContact = createAsyncThunk(
+    "contacts/add",
+    async (newContact, thunkAPI) => {
+      try {
+        const response = await axios.post("/contacts", newContact);
+        return response.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message || "Something went wrong");
+      }
+    }
+  );

@@ -27,6 +27,7 @@ export default function ContactForm() {
     actions.resetForm();
   };
 
+
     return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
         <Form className={css.form}>
             <label htmlFor={`${ fieldId }-name`}>Name</label>
