@@ -1,13 +1,13 @@
 import css from'./App.module.css'
-import ContactForm from './components/contactForm/ContactForm';
-import SearchBox from './components/searchBox/SearchBox';
-import ContactList from './components/contactList/ContactList';
-import Loader from './components/loader/Loader';
-import ErrorMessage from './components/errorMessage/ErrorMessage';
+import ContactForm from './components/ContactForm/ContactForm';
+import SearchBox from './components/SearchBox/SearchBox';
+import ContactList from './components/ContactList/ContactList';
+import Loader from './components/Loader/Loader';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from './redux/contactsOps';
-import { selectLoading, selectError } from './redux/contactsSlice';
+import { fetchContacts } from './redux/contacts/operations';
+import { selectLoading, selectError } from './redux/contacts/selectors';
 import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
