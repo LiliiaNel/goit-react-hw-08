@@ -1,9 +1,47 @@
-// Додайте у файл redux/auth/operations.js операції, оголошені за допомогою createAsyncThunk, для роботи з користувачем:
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// register - для реєстрації нового користувача. Базовий тип екшену "auth/register". Використовується у компоненті RegistrationForm на сторінці реєстрації.
-// login - для логіну існуючого користувача. Базовий тип екшену "auth/login". Використовується у компоненті LoginForm на сторінці логіну.
-// logout - для виходу з додатка. Базовий тип екшену "auth/logout". Використовується у компоненті UserMenu у шапці додатку.
-// refreshUser - оновлення користувача за токеном. Базовий тип екшену "auth/refresh". Використовується у компоненті App під час його монтування.
+axios.defaults.baseURL = 'https://connections-api.goit.global/';
+
+export const register = createAsyncThunk("auth/register", async (newUser, thunkAPI) => { 
+    try {
+        const response = await axios.post("/users/signup", newUser);
+        return response.data;
+    } catch {
+        return thunkAPI.rejectWithValue();
+    } 
+    
+ });
+
+ export const login = createAsyncThunk("auth/login", async (registredUser, thunkAPI) => { 
+    try {
+        const response = await axios.post("/users/login", registredUser);
+        return response.data;
+    } catch {
+        return thunkAPI.rejectWithValue();
+    } 
+    
+ });
+
+ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => { 
+    try {
+        const response = await axios.post("/users/logout", );
+        return response.data;
+    } catch {
+        return thunkAPI.rejectWithValue();
+    } 
+    
+ });
 
 
-// Токен авторизованого користувача потрібно зберігати в локальному сховищі за допомогою бібліотеки persist.
+ export const refreshUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) => { 
+    try {
+        const response = await axios.get("/users/current");
+        return response.data;
+    } catch {
+        return thunkAPI.rejectWithValue();
+    } 
+    
+ });
+
+
