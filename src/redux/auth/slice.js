@@ -25,10 +25,11 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.loading = false;
         })
-        .addCase(register.rejected, (state) => {
+        .addCase(register.rejected, (state, action) => {
             state.isLoggedIn = false;
             state.loading = false;
             state.error = true;
+            state.error = action.payload?.message || "Registration failed";
         })
         .addCase(login.pending, (state) => {
             state.loading = true;
@@ -51,18 +52,19 @@ const authSlice = createSlice({
         })
         .addCase(logout.fulfilled, (state) => {
             state.loading = false;
+            state.user.name = null;
+            state.user.email = null;
+            state.token = null;
             state.isLoggedIn = false;
         })
-        .addCase(logout.rejected, (state) => {
-            state.loading = false;
-            state.error = true;
-        })
         .addCase(refreshUser.pending, (state) => {
-            state.loading = true;
             state.error = null;
+            state.isRefreshing = true;
         })
-        .addCase(refreshUser.fulfilled, (state) => {
-            state.loading = false;
+        .addCase(refreshUser.fulfilled, (state, action) => {
+            state.user = action.payload;
+            state.isLoggedIn = true;
+            state.isRefreshing = false;
         })
         .addCase(refreshUser.rejected, (state) => {
             state.loading = false;
