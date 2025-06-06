@@ -9,8 +9,8 @@ export default function Navigation() {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const buildLinkClass = ({ isActive }) => clsx(css.navLink, { [css.activeLink]: isActive });
     
-    return <div>
-        <nav>
+    return <div className={css.navWrapper}>
+        <nav className={css.nav}>
             <NavLink to="/" className={buildLinkClass}>Home</NavLink>
             {isLoggedIn && <NavLink to="/contacts" className={buildLinkClass}>Contacts</NavLink>}
         </nav>

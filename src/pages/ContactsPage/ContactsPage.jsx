@@ -13,7 +13,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { Toaster, toast } from 'react-hot-toast';
 
 export default function ContactsPage() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
@@ -33,9 +33,7 @@ export default function ContactsPage() {
       ignore = true;
     };
   }, [dispatch]);
-    return <div>
-    <h1 className={css.title}>Contact Book</h1>
-    <div className={css.wrapper}>
+    return <div className={css.wrapper}>
       <div className={css.content}>
         <ContactForm />
         <SearchBox />
@@ -47,5 +45,4 @@ export default function ContactsPage() {
       </div>
       <Toaster position="top-right" reverseOrder={false} />
     </div>
-  </div>
 }

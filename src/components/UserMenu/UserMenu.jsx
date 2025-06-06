@@ -5,17 +5,10 @@ import { logout } from "../../redux/auth/operations";
 
 export default function UserMenu() {
     const dispatch = useDispatch();
-logout
+
     const handleLogOut = async () =>{
-        try {
-            await dispatch(logout()).unwrap();
-
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch(logout()).unwrap();
     };
-
-
 
     const user = useSelector(selectUser);
     return <div className={css.container}>

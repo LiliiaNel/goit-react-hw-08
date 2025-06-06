@@ -28,7 +28,7 @@ export default function RegistrationForm() {
   };  
 
   const handleSubmit = async (values, actions) => {
-    dispatch(register(values)).unwrap();
+    dispatch(register(values));
     actions.resetForm();
   };
 

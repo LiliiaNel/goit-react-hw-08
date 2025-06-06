@@ -24,14 +24,14 @@ export default function LoginForm() {
   };  
 
   const handleSubmit = async (values, actions) => {
-    dispatch(login(values)).unwrap();
+    dispatch(login(values));
     actions.resetForm();
   };
 
     return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={loginSchema}>
         <Form className={css.form}>
             <label htmlFor={`${ fieldId }-email`}>Email</label>
-            <Field type="text" name="email" id={`${fieldId}-email`} />
+            <Field type="email" name="email" id={`${fieldId}-email`} />
             <ErrorMessage name="email" component='span' className={css.error} />
             <label htmlFor={`${ fieldId }-password`}>Password</label>
             <Field type="password" name="password" id={`${fieldId}-password`} />

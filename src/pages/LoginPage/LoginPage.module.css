@@ -1,0 +1,15 @@
+.page {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eef4f9;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 28px;
+  color: #072b4a;
+  margin-bottom: 30px;
+}
