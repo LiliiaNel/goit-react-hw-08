@@ -7,6 +7,7 @@ import { refreshUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
+import { Alert } from "@mui/material";
 
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -25,7 +26,9 @@ function App() {
 
   const isRefreshing = useSelector(selectIsRefreshing); 
 
-  return isRefreshing? (<strong>Refreshing...</strong>) : (
+  return isRefreshing? (<Alert severity="info" sx={{ textAlign: "center" }}>
+    Refreshing...
+  </Alert>) : (
     <Layout>
       <Suspense fallback={null}>
         <Routes>

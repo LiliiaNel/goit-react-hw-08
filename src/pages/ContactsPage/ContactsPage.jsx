@@ -22,17 +22,21 @@ export default function ContactsPage() {
   
     async function loadContacts() {
       try {
-        await dispatch(fetchContacts()).unwrap();
-        if (!ignore) toast.success("Contacts loaded");
+        const res = await dispatch(fetchContacts()).unwrap();
+        if (!ignore && res.length > 0) {
+          toast.success("Contacts loaded");
+        }
       } catch {
         if (!ignore) toast.error("Failed to load contacts");
       }
     }
     loadContacts();
     return () => {
-      ignore = true;
+      ignore = true
     };
-  }, [dispatch]);
+
+    }, [dispatch]);
+  
     return <div className={css.wrapper}>
       <div className={css.content}>
         <ContactForm />

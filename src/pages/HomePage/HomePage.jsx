@@ -2,7 +2,9 @@ import css from "./HomePage.module.css";
 import { Container, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 export default function HomePage() {
+
   return (
     <Container maxWidth="sm" sx={{ mt: 8, textAlign: 'center' }}>
       <Typography variant="h3" component="h1" gutterBottom sx={{ whiteSpace: 'nowrap' }}>

@@ -12,7 +12,7 @@ const authSlice = createSlice({
         isLoggedIn: false,
         isRefreshing: false,
         loading: false,
-        error: false,
+        error: null,
     },
     extraReducers: (builder) => builder
         .addCase(register.pending, (state) => {
@@ -25,11 +25,10 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.loading = false;
         })
-        .addCase(register.rejected, (state, action) => {
+        .addCase(register.rejected, (state) => {
             state.isLoggedIn = false;
             state.loading = false;
-            state.error = true;
-            state.error = action.payload?.message || "Registration failed";
+            state.error = "Registration failed. Please try again";
         })
         .addCase(login.pending, (state) => {
             state.loading = true;
@@ -44,7 +43,7 @@ const authSlice = createSlice({
         .addCase(login.rejected, (state) => {
             state.isLoggedIn = false;
             state.loading = false;
-            state.error = true;
+            state.error = "Log in failed. Please try again";
         })
         .addCase(logout.pending, (state) => {
             state.loading = true;
@@ -67,8 +66,7 @@ const authSlice = createSlice({
             state.isRefreshing = false;
         })
         .addCase(refreshUser.rejected, (state) => {
-            state.loading = false;
-            state.error = true;
+            state.error = "Could not load user session";
         })
 });
 

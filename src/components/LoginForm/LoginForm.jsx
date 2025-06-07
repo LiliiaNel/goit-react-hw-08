@@ -1,22 +1,19 @@
 import css from "./LoginForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from "react";
-import * as Yup from "yup";
 import { login } from "../../redux/auth/operations";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { loginSchema } from '../../validation/schemas';
+import { selectAuthError, selectAuthLoading } from "../../redux/auth/selectors";
+import { SyncLoader} from "react-spinners";
+import Alert from '@mui/material/Alert';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-    let loginSchema = Yup.object().shape({
-      email: Yup.string().email("Invalid email address").required("Email is required"),
-      password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .matches(/[A-Z]/, "Must contain at least one uppercase letter")
-      .matches(/[0-9]/, "Must contain at least one number")
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, "Must contain at least one special character")
-      .required("Password is required"),
-    });
+
+  const loading = useSelector(selectAuthLoading);
+  const error = useSelector(selectAuthError);
+  
     const fieldId = useId(); 
     const initialValues = {
         email: "",
@@ -29,14 +26,19 @@ export default function LoginForm() {
   };
 
     return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={loginSchema}>
-        <Form className={css.form}>
+      <Form className={css.form}>
+      {error && (
+          <Alert severity="error" sx={{ mb: 2, fontWeight: 'medium', textAlign: 'center' }}>
+            {error}
+          </Alert>
+        )}
             <label htmlFor={`${ fieldId }-email`}>Email</label>
             <Field type="email" name="email" id={`${fieldId}-email`} />
             <ErrorMessage name="email" component='span' className={css.error} />
             <label htmlFor={`${ fieldId }-password`}>Password</label>
             <Field type="password" name="password" id={`${fieldId}-password`} />
             <ErrorMessage name="password" component='span' className={css.error} />
-            <button type="submit">Login</button>
+            <button type="submit" disabled={loading}>{loading ? <SyncLoader /> : "Login"}</button>
         </Form>
     </Formik>
 }
