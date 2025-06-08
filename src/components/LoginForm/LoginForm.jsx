@@ -32,12 +32,16 @@ export default function LoginForm() {
             {error}
           </Alert>
         )}
+        <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-email`}>Email</label>
             <Field type="email" name="email" id={`${fieldId}-email`} />
-            <ErrorMessage name="email" component='span' className={css.error} />
+          <ErrorMessage name="email" component='span' className={css.error} />
+        </div>
+        <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-password`}>Password</label>
             <Field type="password" name="password" id={`${fieldId}-password`} />
-            <ErrorMessage name="password" component='span' className={css.error} />
+          <ErrorMessage name="password" component='span' className={css.error} />
+          </div>
             <button type="submit" disabled={loading}>{loading ? <SyncLoader /> : "Login"}</button>
         </Form>
     </Formik>

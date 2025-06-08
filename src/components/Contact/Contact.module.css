@@ -1,27 +1,80 @@
-p {
-  margin: 0;
-}
-
 .info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  color: #072b4a;
-  font-size: 14px;
+  gap: 8px;
+  color: #223843;
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.4;
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #4c6085;
+  cursor: pointer;
+}
+
+.nameText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.scrollText {
+  text-overflow: clip;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  padding-bottom: 4px;
+  flex: none;
+  scrollbar-width: thin;
+  scrollbar-color: #abc4ff transparent;
+}
+
+.scrollText::-webkit-scrollbar {
+  height: 6px;
+}
+.scrollText::-webkit-scrollbar-thumb {
+  background-color: #abc4ff;
+  border-radius: 4px;
+}
+.scrollText::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.info svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .button {
-  background-color: #3399ff;
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: #4c6085;
+  border: 1px solid #4c6085;
   border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
+  margin-top: 12px;
 }
 
 .button:hover {
-  background-color: #007acc;
+  background-color: #4c6085;
+  color: #ffffff;
+  border-color: #4c6085;
 }

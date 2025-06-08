@@ -2,7 +2,7 @@ import css from "./ContactsPage.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
-import { selectLoading, selectError } from '../../redux/contacts/selectors';
+import { selectLoading, selectError, selectContacts } from '../../redux/contacts/selectors';
 
 import ContactForm from '../../components/ContactForm/ContactForm';
 import SearchBox from '../../components/SearchBox/SearchBox';
@@ -16,16 +16,15 @@ export default function ContactsPage() {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const contacts = useSelector(selectContacts);
 
   useEffect(() => {
     let ignore = false;
   
     async function loadContacts() {
       try {
-        const res = await dispatch(fetchContacts()).unwrap();
-        if (!ignore && res.length > 0) {
-          toast.success("Contacts loaded");
-        }
+        await dispatch(fetchContacts()).unwrap();
+        
       } catch {
         if (!ignore) toast.error("Failed to load contacts");
       }
@@ -35,14 +34,14 @@ export default function ContactsPage() {
       ignore = true
     };
 
-    }, [dispatch]);
+  }, [dispatch]);
+
+  const hasContacts = !loading && !error && contacts?.length > 0;
   
-    return <div className={css.wrapper}>
-      <div className={css.content}>
+  return <div className={css.wrapper}>
         <ContactForm />
-        <SearchBox />
-      </div>
-      <div className={css.contactContent}>
+    <div className={css.contactContent}>
+        {hasContacts && <SearchBox />}
         {loading && <Loader />}
         {error && <ErrorMessage />}
         {!loading && !error && <ContactList />}

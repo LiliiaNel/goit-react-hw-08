@@ -1,4 +1,4 @@
-.navWrapper {
+/* .navWrapper {
   display: flex;
   align-items: center;
 }
@@ -24,4 +24,47 @@
 .activeLink {
   font-weight: 700;
   text-decoration: underline;
+} */
+
+.navWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navLink {
+  color: #223843;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.navLink:hover {
+  background-color: rgba(34, 56, 67, 0.075);
+  box-shadow: 0 2px 6px rgba(34, 56, 67, 0.075);
+}
+
+.activeLink {
+  position: relative;
+  font-weight: 600;
+}
+
+.activeLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: #223843;
+  border-radius: 1px;
 }

@@ -1,26 +1,32 @@
 import css from "./HomePage.module.css";
-import { Container, Typography, Button, Box } from '@mui/material';
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { Player } from '@lottiefiles/react-lottie-player';
+import animationData from '../../Animation- HomePage.json';
 
 
 export default function HomePage() {
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 8, textAlign: 'center' }}>
-      <Typography variant="h3" component="h1" gutterBottom sx={{ whiteSpace: 'nowrap' }}>
-        Welcome to Contacts Book
-      </Typography>
-      <Typography variant="body1" sx={{ mb: 4 }}>
+    <div className={css.page}>
+      <div className={css.rightAnimation}>
+          <Player
+            autoplay
+            loop
+            src={animationData}
+            style={{ height: '200px', width: '200px' }}
+          />
+    </div>
+    <div className={css.container}>
+      <h1 className={css.title}>Welcome to Contacts Book</h1>
+      <p className={css.description}>
         Log in to manage your contacts easily — add, edit, and keep everything organized in one place.
-      </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-        <Button variant="contained" component={Link} to="/login">
-          Log In
-        </Button>
-        <Button variant="outlined" component={Link} to="/register">
-          Register
-        </Button>
-      </Box>
-    </Container>
+      </p>
+      <div className={css.buttonGroup}>
+        <Link to="/login" className={clsx(css.button, css.primary)}>Log In</Link>
+        <Link to="/register" className={clsx(css.button, css.outline)}>Register</Link>
+      </div>
+      </div>
+      </div>
   );
 }

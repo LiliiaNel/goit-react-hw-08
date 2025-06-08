@@ -3,6 +3,7 @@
   align-items: flex-start;
   gap: 50px;
   padding: 50px;
+  background-color: #f8f9fa;
 }
 
 @media (max-width: 768px) {
@@ -11,7 +12,7 @@
     align-items: center;
   }
 }
-
+/* 
 .content {
   display: flex;
   flex-direction: column;
@@ -29,17 +30,14 @@
     width: 100%;
     position: static;
   }
-}
-
-.title {
-  text-align: center;
-  font-size: 36px;
-  padding-top: 30px;
-  margin: 0;
-  color: #015fa3;
-}
+} */
 
 .contactContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
   flex-grow: 1;
   width: 100%;
   max-width: 100%;

@@ -31,16 +31,21 @@ export default function RegistrationForm() {
           <Alert severity="error" sx={{ mb: 2, fontWeight: 'medium', textAlign: 'center' }}>
             {error}
           </Alert>
-        )}
+        )}<div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-name`}>Username</label>
             <Field type="text" name="name" id={`${fieldId}-name`} />
-            <ErrorMessage name="name" component='span' className={css.error} />
+          <ErrorMessage name="name" component='span' className={css.error} />
+        </div>
+          <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-email`}>Email</label>
             <Field type="text" name="email" id={`${fieldId}-email`} />
             <ErrorMessage name="email" component='span' className={css.error} />
+         </div>
+          <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-password`}>Password</label>
             <Field type="password" name="password" id={`${fieldId}-password`} />
-            <ErrorMessage name="password" component='span' className={css.error} />
+          <ErrorMessage name="password" component='span' className={css.error} />
+        </div>
             <button type="submit" disabled={loading}>{loading ? <SyncLoader /> : "Register"}</button>
         </Form>
   </Formik>

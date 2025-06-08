@@ -22,13 +22,17 @@ export default function ContactForm() {
   };
 
     return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
-        <Form className={css.form}>
+      <Form className={css.form}>
+        <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-name`}>Name</label>
             <Field type="text" name="name" id={`${fieldId}-name`} />
-            <ErrorMessage name="name" component='span' className={css.error}  />
+          <ErrorMessage name="name" component='span' className={css.error} />
+        </div>
+        <div className={css.formGroup}>
               <label htmlFor={`${ fieldId }-number`}>Number</label>
             <Field type="text" name="number" id={`${fieldId}-number`} />
-             <ErrorMessage name="number" component='span' className={css.error}  />
+          <ErrorMessage name="number" component='span' className={css.error} />
+          </div>
               <button type="submit">Add contact</button>
         </Form>
     </Formik>

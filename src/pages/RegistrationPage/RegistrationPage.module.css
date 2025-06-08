@@ -4,12 +4,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #eef4f9;
+  background-color: #f8f9fa;
   padding: 40px 20px;
 }
 
 .title {
-  font-size: 28px;
-  color: #072b4a;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #223843;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 0;
   margin-bottom: 30px;
 }

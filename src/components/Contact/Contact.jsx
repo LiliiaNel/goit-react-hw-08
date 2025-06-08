@@ -12,11 +12,13 @@ import {
     Button,
     Typography
 } from "@mui/material";
+import clsx from 'clsx';
 
 
 export default function Contact({ contact }) {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+    const [scrollField, setScrollField] = useState(null);
 
     const handleDialogOpen = () => setOpen(true);
     const handleDialogClose = () => setOpen(false);
@@ -25,10 +27,23 @@ export default function Contact({ contact }) {
         dispatch(deleteContact(contact.id))
     };
 
+    
+    const handleScrollToggle = (value) => {
+        if (scrollField === value) {
+          setScrollField(null);
+        } else {
+          setScrollField(value);
+        }
+      };
+      
+    const scrollforName = clsx(css.nameText, { [css.scrollText]: scrollField === contact.name});
+    
     return <>
         <div className={css.info}>
-            <p><IoMdPerson /> {contact.name}</p>
-            <p><MdLocalPhone /> {contact.number}</p>
+            <p title={contact.name} onClick={() => handleScrollToggle(contact.name)}><IoMdPerson />
+                <span className={scrollforName}>{contact.name}</span></p>
+            <p title={contact.number}><MdLocalPhone />
+                <span>{contact.number}</span></p>
         </div>
         <button onClick={handleDialogOpen} className={css.button}>Delete</button>
         <Dialog

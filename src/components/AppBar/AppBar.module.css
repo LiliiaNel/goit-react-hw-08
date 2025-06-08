@@ -2,18 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #1976d2;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px 32px;
+  background-color: #f8f9fa;
+  color: #223843;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.05em;
 }
+
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 1.8rem;
+  font-weight: 600;
   user-select: none;
-  margin: 0;
+  text-transform: uppercase;
+  border-left: 4px solid #223843;
+  padding-left: 12px;
+  letter-spacing: 0.1em;
 }
