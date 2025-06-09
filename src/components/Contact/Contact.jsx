@@ -1,32 +1,33 @@
 import css from "./Contact.module.css";
 import { IoMdPerson } from "react-icons/io";
 import { MdLocalPhone } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBack2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { deleteContact } from "../../redux/contacts/operations";
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    Typography
-} from "@mui/material";
+import { deleteContact, editContact } from "../../redux/contacts/operations";
 import clsx from 'clsx';
-
+import EditDialog from "../EditDialog/EditDialog";
+import DeleteDialog from "../DeleteDialog/DeleteDialog";
 
 export default function Contact({ contact }) {
-    const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
+    
+    const [editOpen, setEditOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
     const [scrollField, setScrollField] = useState(null);
 
-    const handleDialogOpen = () => setOpen(true);
-    const handleDialogClose = () => setOpen(false);
+    const handleEditClose = () => setEditOpen(false);
+    const handleDeleteClose = () => setDeleteOpen(false);
+
+    const dispatch = useDispatch();
 
     const handleDeleteContact = () => {
         dispatch(deleteContact(contact.id))
     };
 
+    const handleEditContact = (updatedData) => {
+        dispatch(editContact({ contactId: contact.id, updatedData }));  
+    };
     
     const handleScrollToggle = (value) => {
         if (scrollField === value) {
@@ -45,25 +46,21 @@ export default function Contact({ contact }) {
             <p title={contact.number}><MdLocalPhone />
                 <span>{contact.number}</span></p>
         </div>
-        <button onClick={handleDialogOpen} className={css.button}>Delete</button>
-        <Dialog
-            open={open}
-            onClose={handleDialogClose}
-            aria-labelledby="delete-dialog-title"
-            aria-describedby="delete-dialog-description"
-            role="alertdialog">
-            <DialogTitle id="delete-dialog-title">Delete Contact</DialogTitle>
-            <DialogContent>
-                <Typography id="delete-dialog-description">
-                    Are you sure you want to delete <strong>{contact.name}</strong>?
-                </Typography>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleDialogClose}>Cancel</Button>
-                <Button onClick={handleDeleteContact} color="error" autoFocus>
-                    Delete
-                </Button>
-            </DialogActions>
-        </Dialog>
+        <div className={css.iconButtons}>
+        <button onClick={() => setDeleteOpen(true)} className={clsx(css.iconBtn, css.deleteBtn)}><RiDeleteBack2Line/></button>
+        <button onClick={() => setEditOpen(true)} className={clsx(css.iconBtn, css.editBtn)}><FiEdit /></button>
+        </div>
+        <EditDialog
+        open={editOpen}
+        onClose={handleEditClose}
+        onSave={handleEditContact}
+        contact={contact}
+        />
+        <DeleteDialog
+            open={deleteOpen}
+            onClose={handleDeleteClose}
+            onDelete={handleDeleteContact}
+            contactName={contact.name}
+        />
     </>
 };

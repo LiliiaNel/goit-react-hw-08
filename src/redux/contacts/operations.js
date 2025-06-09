@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setAuthHeader } from "../auth/operations";
 
 axios.defaults.baseURL = 'https://connections-api.goit.global/';
+
 
 export const fetchContacts = createAsyncThunk("contacts/fetchAll", async (_, thunkAPI) => { 
     try {
@@ -35,4 +37,17 @@ export const addContact = createAsyncThunk(
         return thunkAPI.rejectWithValue(error.message || "Something went wrong");
       }
     }
-  );
+);
+export const editContact = createAsyncThunk(
+  "contacts/edit",
+  async ({ contactId, updatedData }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      setAuthHeader (`Bearer ${state.auth.token}`);
+      const response = await axios.patch(`/contacts/${contactId}`, updatedData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || "Contact update failed");
+    }
+  }
+);

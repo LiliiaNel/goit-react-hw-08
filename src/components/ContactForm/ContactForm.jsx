@@ -1,14 +1,17 @@
 import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import {contactSchema} from "../../validation/schemas"
+import { selectContacts } from "../../redux/contacts/selectors";
+import { Toaster, toast } from 'react-hot-toast';
 
 
 export default function ContactForm() {
   
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const fieldId = useId();    
   const initialValues = {
@@ -16,12 +19,24 @@ export default function ContactForm() {
         number: "",
   };  
 
+
   const handleSubmit = (values, actions) => {
+    const nameExists = contacts.some(
+      (contact) => contact.name.toLowerCase() === values.name.toLowerCase()
+    );
+    const numberExists = contacts.some(
+      (contact) => contact.number === values.number
+    );
+  
+    if (nameExists || numberExists) {
+      toast.error("Contact already exists", { position: "bottom-left" });
+      return;
+    }
     dispatch(addContact(values));
     actions.resetForm();
   };
 
-    return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
+  return <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactSchema}>
       <Form className={css.form}>
         <div className={css.formGroup}>
             <label htmlFor={`${ fieldId }-name`}>Name</label>
@@ -35,5 +50,5 @@ export default function ContactForm() {
           </div>
               <button type="submit">Add contact</button>
         </Form>
-    </Formik>
+  </Formik>
 };
