@@ -7,14 +7,19 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App.jsx'
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme.js'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-        <CssBaseline enableColorScheme />
+          <CssBaseline enableColorScheme />
+          <ThemeProvider theme={theme}>
             <App />
+          </ThemeProvider>
           </BrowserRouter>
         </PersistGate>
     </Provider>

@@ -8,7 +8,7 @@ export default function ContactList() {
 	const visibleContacts = useSelector(selectFilteredContacts);
 
 	if (visibleContacts.length === 0) {
-		return <p className={css.noContacts}>No contacts found. Add your first one to get started!</p>;
+		return <p className={css.noContacts}>No contacts found</p>;
 	  }
 	
 	return (<ul className={css.container}>

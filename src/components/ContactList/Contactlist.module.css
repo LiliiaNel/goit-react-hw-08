@@ -9,7 +9,7 @@
   justify-content: flex-start;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .container {
     justify-content: center;
     min-width: unset;
@@ -21,14 +21,20 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 250px;
   padding: 20px;
   border-radius: 3px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(34, 56, 67, 0.05);
   transition: box-shadow 0.3s ease;
   position: relative;
+}
+
+@media only screen and (min-width: 768px) {
+  .item {
+    min-width: 300px;
+    padding: 30px 24px;
+  }
 }
 
 .item:hover {
@@ -54,6 +60,6 @@
 .noContacts {
   padding: 1rem;
   font-size: 1.1rem;
-  color: #666;
+  color: #4c6085;
   text-align: center;
 }

@@ -1,11 +1,18 @@
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 16px;
   color: #223843;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+@media only screen and (min-width: 820px) {
+  .container {
+    flex-direction: unset;
+  }
 }
 
 .username {

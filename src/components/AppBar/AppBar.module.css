@@ -22,3 +22,16 @@
   padding-left: 12px;
   letter-spacing: 0.1em;
 }
+
+.menuButton {
+  margin-left: auto;
+}
+
+.drawerPaper {
+  background-color: #f8f9fa;
+  padding: 24px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

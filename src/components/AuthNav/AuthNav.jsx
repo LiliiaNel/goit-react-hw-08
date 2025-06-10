@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 export default function AuthNav() {
      const buildLinkClass = ({ isActive }) => clsx(css.navLink, { [css.activeLink]: isActive });
-    return <div>
+    return <div className={css.container}>
         <NavLink to="/register" className={buildLinkClass}>Register</NavLink>
         <NavLink to="/login" className={buildLinkClass}>LogIn</NavLink>
     </div>

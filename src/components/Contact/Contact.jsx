@@ -1,14 +1,13 @@
 import css from "./Contact.module.css";
 import { IoMdPerson } from "react-icons/io";
 import { MdLocalPhone } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBack2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { deleteContact, editContact } from "../../redux/contacts/operations";
 import clsx from 'clsx';
 import EditDialog from "../EditDialog/EditDialog";
 import DeleteDialog from "../DeleteDialog/DeleteDialog";
+import ContactMenu from '../ContactMenu/ContactMenu'
 
 export default function Contact({ contact }) {
     
@@ -46,11 +45,11 @@ export default function Contact({ contact }) {
             <p title={contact.number}><MdLocalPhone />
                 <span>{contact.number}</span></p>
         </div>
-        <div className={css.iconButtons}>
-        <button onClick={() => setDeleteOpen(true)} className={clsx(css.iconBtn, css.deleteBtn)}><RiDeleteBack2Line/></button>
-        <button onClick={() => setEditOpen(true)} className={clsx(css.iconBtn, css.editBtn)}><FiEdit /></button>
-        </div>
-        <EditDialog
+            <ContactMenu
+        onEdit={() => setEditOpen(true)}
+        onDelete={() => setDeleteOpen(true)}
+      />
+        <EditDialog 
         open={editOpen}
         onClose={handleEditClose}
         onSave={handleEditContact}

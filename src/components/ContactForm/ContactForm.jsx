@@ -5,7 +5,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import {contactSchema} from "../../validation/schemas"
 import { selectContacts } from "../../redux/contacts/selectors";
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 
 export default function ContactForm() {
@@ -18,8 +18,7 @@ export default function ContactForm() {
         name: "",
         number: "",
   };  
-
-
+  
   const handleSubmit = (values, actions) => {
     const nameExists = contacts.some(
       (contact) => contact.name.toLowerCase() === values.name.toLowerCase()

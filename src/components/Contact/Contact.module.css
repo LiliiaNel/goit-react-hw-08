@@ -4,7 +4,6 @@
   gap: 8px;
   color: #223843;
   font-size: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.4;
   min-width: 120px;
   max-width: 200px;
@@ -55,48 +54,4 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-}
-
-.iconButtons {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 0;
-}
-
-.iconBtn {
-  background: none;
-  border: none;
-  color: #abb8ce;
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.3s ease, transform 0.2s ease;
-  font-size: 1.7rem;
-  width: 20px;
-  height: 20px;
-}
-
-.editBtn:hover {
-  color: #abc4ff;
-  transform: scale(1.1);
-}
-
-.editBtn:focus {
-  outline: none;
-  color: #abc4ff;
-}
-.deleteBtn {
-  color: rgba(34, 56, 67, 0.075);
-}
-.deleteBtn:hover {
-  color: #4c6085;
-  transform: scale(1.1);
-}
-
-.deleteBtn:focus {
-  outline: none;
-  color: #4c6085;
 }

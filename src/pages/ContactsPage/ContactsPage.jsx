@@ -38,7 +38,7 @@ export default function ContactsPage() {
 
   const hasContacts = !loading && !error && contacts?.length > 0;
   
-  return <div className={css.wrapper}>
+  return <div className={css.page}>
         <ContactForm />
     <div className={css.contactContent}>
         {hasContacts && <SearchBox />}
