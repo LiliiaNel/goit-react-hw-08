@@ -22,7 +22,7 @@
   justify-content: space-between;
   gap: 24px;
   min-width: 250px;
-  padding: 20px;
+  padding: 15px;
   border-radius: 3px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(34, 56, 67, 0.05);
@@ -33,7 +33,7 @@
 @media only screen and (min-width: 768px) {
   .item {
     min-width: 300px;
-    padding: 30px 24px;
+    padding: 15px 25px;
   }
 }
 
