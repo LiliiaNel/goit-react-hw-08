@@ -1,4 +1,6 @@
 import css from './EditDialog.module.css';
+import * as Yup from "yup";
+import { contactSchema } from '../../validation/schemas.js'
 import {  useEffect, useState } from "react";
 import {
     Dialog,
@@ -8,6 +10,7 @@ import {
     Button,
 } from "@mui/material";
 import clsx from 'clsx';
+import toast from 'react-hot-toast';
 
 export default function EditDialog({ open, onClose, onSave, contact }) {
     
@@ -21,9 +24,19 @@ export default function EditDialog({ open, onClose, onSave, contact }) {
       }
     }, [contact, open]);
   
-    const handleSave = () => {
+  const handleSave = async () => {
+    try {
+      await contactSchema.validate({ name, number }, { abortEarly: false });
       onSave({ name, number });
       onClose();
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errorCase = error.inner;
+        errorCase.forEach(err => {
+          toast.error(err.message);
+        });
+      }
+    }
     };
   
     return <Dialog open={open} onClose={onClose}>

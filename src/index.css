@@ -7,10 +7,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+body.app-body {
   margin: 0;
   display: block;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #223843;
 }

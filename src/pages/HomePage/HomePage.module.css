@@ -1,5 +1,4 @@
 .page {
-  background-color: #f8f9fa;
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -19,27 +18,28 @@
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  align-items: center;
+  gap: 30px;
 }
 
 .title {
   font-size: 2.5rem;
-  color: #223843;
   letter-spacing: 0.05em;
   margin: 0;
 }
 
 .description {
   font-size: 1rem;
-  margin-bottom: 32px;
+  margin: 0;
   color: #4c6085;
 }
 
 .buttonGroup {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
+  padding-top: 20px;
 }
 
 .button {
@@ -75,4 +75,36 @@
   background-color: #a2c3ff;
   color: #2b3884;
   border-color: #5e74f6;
+}
+
+.link {
+  color: #2b3884;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.descrList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.descrList li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f9f9f9;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: background 0.3s ease;
+}
+
+.descrList svg {
+  color: #5e74f6;
 }

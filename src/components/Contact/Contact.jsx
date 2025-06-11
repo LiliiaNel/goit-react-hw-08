@@ -36,14 +36,16 @@ export default function Contact({ contact }) {
         }
       };
       
-    const scrollforName = clsx(css.nameText, { [css.scrollText]: scrollField === contact.name});
+    const scrollforName = clsx(css.contactText, { [css.scrollText]: scrollField === contact.name });
+    
+    const scrollforNumber = clsx(css.contactText, { [css.scrollText]: scrollField === contact.number});
     
     return <>
         <div className={css.info}>
             <p title={contact.name} onClick={() => handleScrollToggle(contact.name)}><IoMdPerson />
                 <span className={scrollforName}>{contact.name}</span></p>
-            <p title={contact.number}><MdLocalPhone />
-                <span>{contact.number}</span></p>
+            <p title={contact.number} onClick={() => handleScrollToggle(contact.number)}><MdLocalPhone />
+                <span className={scrollforNumber}>{contact.number}</span></p>
         </div>
             <ContactMenu
         onEdit={() => setEditOpen(true)}

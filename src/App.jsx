@@ -4,10 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from "./components/Layout/Layout";
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
-import { selectIsRefreshing } from './redux/auth/selectors';
+import { selectAuthError, selectIsRefreshing } from './redux/auth/selectors';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
-import { Alert } from "@mui/material";
+import { Alert,  Box } from "@mui/material";
 
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -19,6 +19,7 @@ const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
 function App() {
 
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -26,8 +27,16 @@ function App() {
 
   const isRefreshing = useSelector(selectIsRefreshing); 
 
-  return isRefreshing? (<Alert severity="info" sx={{ textAlign: "center" }}>
-    Refreshing...
+  if (isRefreshing) {
+    return (
+      <Box textAlign="center" mt={5}>
+        <Alert severity="info" sx={{ mt: 2 }}>Refreshing...</Alert>
+      </Box>
+    );
+  }
+  
+  return error? ( <Alert severity="error" sx={{ mb: 2, fontWeight: 'medium', textAlign: 'center' }}>
+    {error}
   </Alert>) : (
     <Layout>
       <Suspense fallback={null}>
@@ -39,7 +48,7 @@ function App() {
         </Routes>
       </Suspense>
     </Layout>
-  );
+  );         
 }
 
 export default App

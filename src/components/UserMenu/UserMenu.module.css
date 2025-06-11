@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  color: #223843;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -21,7 +20,6 @@
 
 .logoutBtn {
   background-color: transparent;
-  color: #223843;
   border: 1px solid #223843;
   padding: 8px 12px;
   border-radius: 4px;
